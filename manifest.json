@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Qimai Rank Scout",
+  "version": "0.1.0",
+  "description": "Scrape Qimai App Store grossing ranks (US/iPhone) for ranks 100-200: new entrants or rises >10.",
+  "action": {
+    "default_title": "Qimai Rank Scout",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "scripting",
+    "storage",
+    "alarms",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://www.qimai.cn/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.qimai.cn/rank/index/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html"
+}

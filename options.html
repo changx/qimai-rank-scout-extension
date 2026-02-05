@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Qimai Rank Scout Options</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; margin: 16px; max-width: 900px; }
+    label { display:block; margin: 12px 0 6px; font-weight: 600; }
+    input, textarea { width: 100%; padding: 8px; }
+    .row { display:flex; gap: 12px; }
+    .col { flex: 1; }
+    button { padding: 10px 14px; margin-top: 12px; }
+    .muted { color:#666; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h2>Qimai Rank Scout — Options</h2>
+  <div class="muted">Tip: keep a Qimai tab logged-in to reduce chance of paywall prompts.</div>
+
+  <div class="row">
+    <div class="col">
+      <label>Rise threshold ("rise &gt; N")</label>
+      <input id="riseThreshold" type="number" min="1" />
+    </div>
+    <div class="col">
+      <label>Rank range</label>
+      <div class="row">
+        <input id="rankMin" type="number" min="1" />
+        <input id="rankMax" type="number" min="1" />
+      </div>
+    </div>
+  </div>
+
+  <label>Genres (JSON array of {id,name})</label>
+  <textarea id="genres" rows="10"></textarea>
+
+  <label><input id="dailyEnabled" type="checkbox" /> Run daily</label>
+  <div class="row">
+    <div class="col">
+      <label>Daily hour (0-23)</label>
+      <input id="dailyHour" type="number" min="0" max="23" />
+    </div>
+    <div class="col">
+      <label>Daily minute (0-59)</label>
+      <input id="dailyMinute" type="number" min="0" max="59" />
+    </div>
+  </div>
+
+  <label><input id="closeTabsAfterRun" type="checkbox" /> Close background tabs after run</label>
+
+  <button id="save">Save</button>
+  <pre id="out" class="muted"></pre>
+
+  <script src="options.js"></script>
+</body>
+</html>
