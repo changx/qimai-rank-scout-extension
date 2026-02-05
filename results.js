@@ -135,7 +135,19 @@ async function load() {
 
   document.getElementById('clear').onclick = async () => {
     await clearResults();
-    setStatus('Cleared.');
+    setStatus('Cleared local results.');
+    await load();
+  };
+
+  document.getElementById('clearAll').onclick = async () => {
+    const ok = confirm('Clear ALL local data for Qimai Rank Scout? (config + results + logs)');
+    if (!ok) return;
+    const res = await chrome.runtime.sendMessage({ type: 'QM_BG_CLEAR_ALL' });
+    if (!res?.ok) {
+      setStatus(res?.error || 'Failed to clear', true);
+      return;
+    }
+    setStatus('Cleared all local data.');
     await load();
   };
 

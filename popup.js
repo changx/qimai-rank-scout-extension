@@ -19,6 +19,13 @@ document.getElementById('results').addEventListener('click', async () => {
   setOut(`Last results: ${count} records\nrunId: ${res?.lastResults?.runId || 'n/a'}`);
 });
 
+document.getElementById('clearAll').addEventListener('click', async () => {
+  const ok = confirm('Clear ALL local data for Qimai Rank Scout? (config + results + logs)');
+  if (!ok) return;
+  const res = await chrome.runtime.sendMessage({ type: 'QM_BG_CLEAR_ALL' });
+  setOut(res?.ok ? 'Cleared all local data.' : `Failed: ${res?.error || 'unknown'}`);
+});
+
 document.getElementById('options').addEventListener('click', async () => {
   await chrome.runtime.openOptionsPage();
 });

@@ -134,6 +134,14 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       sendResponse({ ok: true, lastResults: lastResults || null });
       return;
     }
+    if (msg?.type === 'QM_BG_CLEAR_ALL') {
+      // Clears ALL local extension state (config + last results + run logs)
+      await chrome.storage.local.clear();
+      // restore defaults
+      await setConfig({});
+      sendResponse({ ok: true });
+      return;
+    }
     sendResponse({ ok: false, error: 'unknown message' });
   })();
   return true;
