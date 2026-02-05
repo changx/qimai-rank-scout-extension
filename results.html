@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Qimai Rank Scout — Results</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; margin: 16px; }
+    h1 { margin: 0 0 8px; }
+    .muted { color: #666; font-size: 12px; }
+    .bar { display:flex; gap: 8px; align-items: center; margin: 12px 0; flex-wrap: wrap; }
+    input, select { padding: 8px; }
+    button { padding: 8px 12px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border-bottom: 1px solid #eee; text-align: left; padding: 8px; font-size: 13px; vertical-align: top; }
+    th { position: sticky; top: 0; background: #fff; z-index: 1; }
+    .pill { display:inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; }
+    .pill.up { background:#e8f5e9; color:#1b5e20; }
+    .pill.new { background:#e3f2fd; color:#0d47a1; }
+    .right { margin-left: auto; }
+    .nowrap { white-space: nowrap; }
+    .summary { max-width: 360px; }
+    a { color: #1565c0; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .error { color: #b71c1c; }
+  </style>
+</head>
+<body>
+  <h1>Qimai Rank Scout — Results</h1>
+  <div id="meta" class="muted">Loading…</div>
+
+  <div class="bar">
+    <input id="q" placeholder="Search app / developer" />
+    <select id="filterType">
+      <option value="">All types</option>
+      <option value="new">新进榜</option>
+      <option value="up">Up</option>
+    </select>
+    <select id="filterGenre">
+      <option value="">All genres</option>
+    </select>
+
+    <button id="refresh">Refresh</button>
+    <button id="exportCsv">Export CSV</button>
+    <button id="clear" class="right">Clear local results</button>
+  </div>
+
+  <div id="status" class="muted"></div>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="nowrap">Rank</th>
+        <th>Change</th>
+        <th>App</th>
+        <th>Developer</th>
+        <th>Genre</th>
+        <th class="summary">Summary</th>
+        <th class="nowrap">Links</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <script src="results.js"></script>
+</body>
+</html>

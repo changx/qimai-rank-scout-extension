@@ -8,6 +8,11 @@ document.getElementById('run').addEventListener('click', async () => {
   setOut(JSON.stringify(res, null, 2));
 });
 
+document.getElementById('openResults').addEventListener('click', async () => {
+  const url = chrome.runtime.getURL('results.html');
+  await chrome.tabs.create({ url });
+});
+
 document.getElementById('results').addEventListener('click', async () => {
   const res = await chrome.runtime.sendMessage({ type: 'QM_BG_GET_LAST_RESULTS' });
   const count = res?.lastResults?.records?.length ?? 0;
